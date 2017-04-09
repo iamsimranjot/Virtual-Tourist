@@ -41,6 +41,8 @@
 			isa = PBXGroup;
 			children = (
 				701141FB1E9A3DF500D27754 /* Virtual Tourist */,
+				701142151E9A40BF00D27754 /* Assests */,
+				701142161E9A40F300D27754 /* Supporting Files */,
 				701141FA1E9A3DF500D27754 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,13 +59,53 @@
 			isa = PBXGroup;
 			children = (
 				701141FC1E9A3DF500D27754 /* AppDelegate.swift */,
-				701141FE1E9A3DF500D27754 /* ViewController.swift */,
-				701142001E9A3DF500D27754 /* Main.storyboard */,
-				701142061E9A3DF500D27754 /* Assets.xcassets */,
-				701142081E9A3DF500D27754 /* LaunchScreen.storyboard */,
-				7011420B1E9A3DF500D27754 /* Info.plist */,
+				701142111E9A3FA100D27754 /* Models */,
+				701142121E9A3FAA00D27754 /* Views */,
+				701142131E9A3FB300D27754 /* Controllers */,
+			);
+			path = "Virtual Tourist";
+			sourceTree = "<group>";
+		};
+		701142111E9A3FA100D27754 /* Models */ = {
+			isa = PBXGroup;
+			children = (
 				701142031E9A3DF500D27754 /* Virtual_Tourist.xcdatamodeld */,
 			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		701142121E9A3FAA00D27754 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		701142131E9A3FB300D27754 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				701141FE1E9A3DF500D27754 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		701142151E9A40BF00D27754 /* Assests */ = {
+			isa = PBXGroup;
+			children = (
+				701142061E9A3DF500D27754 /* Assets.xcassets */,
+				701142001E9A3DF500D27754 /* Main.storyboard */,
+				701142081E9A3DF500D27754 /* LaunchScreen.storyboard */,
+			);
+			name = Assests;
+			path = "Virtual Tourist";
+			sourceTree = "<group>";
+		};
+		701142161E9A40F300D27754 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7011420B1E9A3DF500D27754 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			path = "Virtual Tourist";
 			sourceTree = "<group>";
 		};
@@ -306,6 +348,7 @@
 				701142101E9A3DF500D27754 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
