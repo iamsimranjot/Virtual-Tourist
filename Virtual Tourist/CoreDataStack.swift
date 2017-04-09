@@ -18,6 +18,8 @@ struct CoreDataStack {
     internal let coordinator: NSPersistentStoreCoordinator
     private let modelURL: URL
     internal let dbURL: URL
+    internal let persistingContext: NSManagedObjectContext
+    internal let backgroundContext: NSManagedObjectContext
     let context: NSManagedObjectContext
     
     // MARK: Initializers
@@ -45,13 +47,22 @@ struct CoreDataStack {
         self.model = model
         
         // Create the store coordinator
-        
         coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
+        
+        // Create a persistingContext (private queue) and a child one (main queue)
+        
+        persistingContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        persistingContext.persistentStoreCoordinator = coordinator
         
         // create a context and add connect it to the coordinator
         
         context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        context.persistentStoreCoordinator = coordinator
+        context.parent = persistingContext
+        
+        // Create a background context child of main context
+        
+        backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        backgroundContext.parent = context
         
         // Add a SQLite store located in the documents folder
         
@@ -104,26 +115,78 @@ internal extension CoreDataStack  {
 }
 
 
+// MARK: - CoreDataStack (Batch Processing in the Background)
+
+
+extension CoreDataStack {
+    
+    typealias Batch = (_ workerContext: NSManagedObjectContext) -> ()
+    
+    func performBackgroundBatchOperation(_ batch: @escaping Batch) {
+        
+        backgroundContext.perform() {
+            
+            batch(self.backgroundContext)
+            
+            // Save it to the parent context, so normal saving
+            // can work
+            do {
+                try self.backgroundContext.save()
+            } catch {
+                fatalError("Error while saving backgroundContext: \(error)")
+            }
+        }
+    }
+}
+
+
 // MARK: - CoreDataStack (Save Data)
 
 
 extension CoreDataStack {
     
-    func saveContext() throws {
+    func save() {
         
-        if context.hasChanges {
+        // We call this synchronously, but it's a very fast
+        // operation (it doesn't hit the disk). We need to know
+        // when it ends so we can call the next save (on the persisting
+        // context). This last one might take some time and is done
+        // in a background queue
+        
+        context.performAndWait() {
             
-            try context.save()
+            if self.context.hasChanges {
+                do {
+                    
+                    try self.context.save()
+                    
+                } catch {
+                    
+                    fatalError("Error while saving main context: \(error)")
+                }
+                
+                // now we save in the background
+                
+                self.persistingContext.perform() {
+                    do {
+                        
+                        try self.persistingContext.save()
+                        
+                    } catch {
+                        
+                        fatalError("Error while saving persisting context: \(error)")
+                    }
+                }
+            }
         }
     }
     
     func autoSave(_ delayInSeconds : Int) {
         
         if delayInSeconds > 0 {
-            
             do {
                 
-                try saveContext()
+                try self.context.save()
                 print("Autosaving")
                 
             } catch {
