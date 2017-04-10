@@ -87,16 +87,7 @@
 		701142111E9A3FA100D27754 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7008C2C31E9B9ED10035A47E /* Pin+CoreDataClass.swift */,
-				7008C2C41E9B9ED10035A47E /* Pin+CoreDataProperties.swift */,
-				7008C2C51E9B9ED10035A47E /* FlickrConfigs+CoreDataClass.swift */,
-				7008C2C61E9B9ED10035A47E /* FlickrConfigs+CoreDataProperties.swift */,
-				7008C2C71E9B9ED10035A47E /* MapRegion+CoreDataClass.swift */,
-				7008C2C81E9B9ED10035A47E /* MapRegion+CoreDataProperties.swift */,
-				7008C2C91E9B9ED10035A47E /* Photos+CoreDataClass.swift */,
-				7008C2CA1E9B9ED10035A47E /* Photos+CoreDataProperties.swift */,
-				701142171E9A416500D27754 /* CoreDataStack.swift */,
-				701142031E9A3DF500D27754 /* Virtual_Tourist.xcdatamodeld */,
+				701350391E9BFFB200E78BC5 /* CoreData */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -134,6 +125,55 @@
 			);
 			name = "Supporting Files";
 			path = "Virtual Tourist";
+			sourceTree = "<group>";
+		};
+		701350391E9BFFB200E78BC5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				701142171E9A416500D27754 /* CoreDataStack.swift */,
+				701142031E9A3DF500D27754 /* Virtual_Tourist.xcdatamodeld */,
+				7013503A1E9BFFC400E78BC5 /* Pin */,
+				7013503D1E9BFFFE00E78BC5 /* Photos */,
+				7013503C1E9BFFEF00E78BC5 /* MapRegion */,
+				7013503B1E9BFFD000E78BC5 /* FlickrConfigs */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		7013503A1E9BFFC400E78BC5 /* Pin */ = {
+			isa = PBXGroup;
+			children = (
+				7008C2C31E9B9ED10035A47E /* Pin+CoreDataClass.swift */,
+				7008C2C41E9B9ED10035A47E /* Pin+CoreDataProperties.swift */,
+			);
+			name = Pin;
+			sourceTree = "<group>";
+		};
+		7013503B1E9BFFD000E78BC5 /* FlickrConfigs */ = {
+			isa = PBXGroup;
+			children = (
+				7008C2C61E9B9ED10035A47E /* FlickrConfigs+CoreDataProperties.swift */,
+				7008C2C51E9B9ED10035A47E /* FlickrConfigs+CoreDataClass.swift */,
+			);
+			name = FlickrConfigs;
+			sourceTree = "<group>";
+		};
+		7013503C1E9BFFEF00E78BC5 /* MapRegion */ = {
+			isa = PBXGroup;
+			children = (
+				7008C2C81E9B9ED10035A47E /* MapRegion+CoreDataProperties.swift */,
+				7008C2C71E9B9ED10035A47E /* MapRegion+CoreDataClass.swift */,
+			);
+			name = MapRegion;
+			sourceTree = "<group>";
+		};
+		7013503D1E9BFFFE00E78BC5 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				7008C2CA1E9B9ED10035A47E /* Photos+CoreDataProperties.swift */,
+				7008C2C91E9B9ED10035A47E /* Photos+CoreDataClass.swift */,
+			);
+			name = Photos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
