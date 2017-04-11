@@ -20,6 +20,11 @@ public class MapRegion: NSManagedObject {
         
         let entity = NSEntityDescription.entity(forEntityName: "MapRegion", in: context)
         super.init(entity: entity!, insertInto: context)
+        
+        self.centerLatitude = centerLatitude
+        self.centerLongitude = centerLongitude
+        self.spanLatitude = spanLatitude
+        self.spanLongitude = spanLongitude
     }
 
 }
