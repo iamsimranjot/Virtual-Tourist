@@ -15,4 +15,13 @@ public class Photos: NSManagedObject {
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
     }
+    
+    init(photoURL: String, pin: Pin, context: NSManagedObjectContext) {
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Photos", in: context)
+        super.init(entity: entity!, insertInto: context)
+        
+        self.url = photoURL
+        self.pin = pin
+    }
 }
