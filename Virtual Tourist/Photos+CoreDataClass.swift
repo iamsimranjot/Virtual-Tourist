@@ -11,5 +11,8 @@ import CoreData
 
 @objc(Photos)
 public class Photos: NSManagedObject {
-
+    
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
 }
