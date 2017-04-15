@@ -19,4 +19,9 @@ struct Constants {
         
         static let modelName = "Virtual_Tourist"
     }
+    
+    struct FlickrClient {
+        
+        static let APIKey = "b5254ef41767c0f0dea73afa7cf6fc36"
+    }
 }
