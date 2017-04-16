@@ -71,7 +71,7 @@ class APIHelper {
                 return
             }
             
-            guard let status = (response as? HTTPURLResponse)?.statusCode, status < 200 && status > 299, status != 403 else {
+            guard let status = (response as? HTTPURLResponse)?.statusCode, status >= 200 && status <= 299 else {
                 print("Wrong response status code")
                 faliure("Username or password is incorrect")
                 return
@@ -95,7 +95,7 @@ class APIHelper {
 
 extension APIHelper {
     
-    func urlForRequest(apiMethod: String?, pathExtension: String? = nil, parameters: [String : AnyObject]? = nil) -> URL {
+    func urlForRequest(apiMethod: String? = nil, pathExtension: String? = nil, parameters: [String : AnyObject]? = nil) -> URL {
         
         var components = URLComponents()
         components.scheme = URLData.scheme

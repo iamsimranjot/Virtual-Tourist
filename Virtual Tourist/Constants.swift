@@ -35,15 +35,7 @@ struct Constants {
             
             static let scheme = "https"
             static let host = "api.flickr.com"
-            static let path = "services/rest/"
-        }
-        
-        
-        //MARK: API Method
-        
-        struct APIMethod {
-            
-            static let search = "flickr.photos.search"
+            static let path = "/services/rest"
         }
         
         
@@ -51,6 +43,7 @@ struct Constants {
         
         struct ParamKeys {
             
+            static let Method = "method"
             static let APIKey = "api_key"
             static let BBox = "bbox"
             static let SafeSearch = "safe_search"
@@ -66,6 +59,7 @@ struct Constants {
         
         struct ParamValues {
             
+            static let Method = "flickr.photos.search"
             static let APIKey = "b5254ef41767c0f0dea73afa7cf6fc36"
             static let SafeSearch = "1"
             static let Extras = "url_m"

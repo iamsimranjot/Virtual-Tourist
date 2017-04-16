@@ -33,20 +33,53 @@ class FlickrClient: APIHelper {
     
     //MARK: Public Seacrh Method
     
-    func getPhotosForLocation(latitude: Double, longitude: Double, page: Int = 1, handler: (_ photos: [[String : AnyObject]]?, _ pages: Int, _ error: String?) -> Void) {
+    func getPhotosForLocation(latitude: Double, longitude: Double, page: Int = 1,
+                                                success: @escaping (_ photos: [[String : AnyObject]]?, _ pages: Int) -> Void,
+                                                faliure: @escaping (_ error: String?) -> Void) {
         
         let URLParams = getParamsFor(latitude: latitude, longitude: longitude, page: page)
         
-        let requestURL = urlForRequest(apiMethod: Constants.FlickrClient.APIMethod.search, parameters: URLParams)
+        let requestURL = urlForRequest(parameters: URLParams)
         
         makeRequest(forURL: requestURL, requestMethod: .GET, setCompletionClosureWithSuccess: { (data, response) in
             
+            let json: AnyObject!
+            
+            do {
+                
+                json = try JSONSerialization.jsonObject(with: data as! Data, options: .allowFragments) as AnyObject
+                
+            } catch {
+                
+                print("JSON converting error")
+                faliure("Connection error")
+                return
+            }
+            
+            guard let photoData = json["photos"] as? [String : AnyObject] else {
+                print("Can't find [photos] in response")
+                faliure("Wrong response")
+                return
+            }
+            
+            guard let pages = photoData["pages"] as? Int else {
+                print("Can't find [photos][pages] in response")
+                faliure("Wrong response")
+                return
+            }
+            
+            guard let results = photoData["photo"] as? [[String : AnyObject]] else {
+                print("Can't find [photos][photo] in response")
+                faliure("Wrong response")
+                return
+            }
+            
+            success(results, pages)
             
             
         }) { (errorString) in
             
-            
-            
+            faliure(errorString)
         }
     }
 }
@@ -68,7 +101,8 @@ extension FlickrClient {
     
     fileprivate func getParamsFor(latitude: Double, longitude: Double, page: Int) -> [String : AnyObject] {
         
-        let params = [Constants.FlickrClient.ParamKeys.APIKey: Constants.FlickrClient.ParamValues.APIKey,
+        let params = [Constants.FlickrClient.ParamKeys.Method: Constants.FlickrClient.ParamValues.Method,
+                      Constants.FlickrClient.ParamKeys.APIKey: Constants.FlickrClient.ParamValues.APIKey,
                       Constants.FlickrClient.ParamKeys.BBox: getBoundingBoxFrom(latitude: latitude, longitude: longitude),
                       Constants.FlickrClient.ParamKeys.SafeSearch: Constants.FlickrClient.ParamValues.SafeSearch,
                       Constants.FlickrClient.ParamKeys.Extras: Constants.FlickrClient.ParamValues.Extras,
