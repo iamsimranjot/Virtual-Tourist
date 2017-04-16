@@ -12,6 +12,8 @@ import CoreData
 @objc(FlickrConfigs)
 public class FlickrConfigs: NSManagedObject {
     
+    var isFetching = false
+    
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
     }
@@ -24,5 +26,36 @@ public class FlickrConfigs: NSManagedObject {
         self.nextPage = nextPage
         self.totalPages = totalPages
         self.pin = pin
+    }
+    
+    //MARK: Get Photos for Loction
+    
+    func getPhotosForLocation(context: NSManagedObjectContext, handler:@escaping (_ errorString: String?) ->  Void) {
+        
+        if isFetching {
+            handler(Constants.Errors.FetchingOnGoing)
+            return
+        }
+        
+        isFetching = true;
+        
+        FlickrClient.sharedInstance().getPhotosForLocation(latitude: pin!.latitude, longitude: pin!.longitude, page: Int(nextPage), success: { (photosArray, totalPages) in
+            
+            self.isFetching = false
+            
+            for photo in photosArray! where photo[Constants.FlickrClient.ParamValues.Extras] != nil {
+                
+                _ = Photos(photoURL: photo[Constants.FlickrClient.ParamValues.Extras] as! String, pin: self.pin!, context: context)
+            }
+            
+            self.totalPages = Int32(min(15, totalPages))
+            self.nextPage = self.totalPages >= self.nextPage + 1 ? self.nextPage + 1 : 1
+            
+            handler(nil)
+            
+        }) { (errorString) in
+            
+            handler(errorString)
+        }
     }
 }

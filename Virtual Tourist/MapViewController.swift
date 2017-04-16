@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         mapView.delegate = self
+        navigationItem.rightBarButtonItem = editButtonItem
         initialSetup()
     }
     
@@ -38,7 +39,6 @@ extension MapViewController: MKMapViewDelegate {
         let pin = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.MapViewController.PinReuseIdentifier) as? MKPinAnnotationView ??
                                             MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewController.PinReuseIdentifier)
         
-        pin.isSelected = true
         pin.animatesDrop = true
         pin.isDraggable = true
         
@@ -63,15 +63,14 @@ extension MapViewController: MKMapViewDelegate {
                 }
             })
             
-            //TODO: Start Fetching Photos for New Location
-            
+            getPhotosForPin(pin)
         }
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
         let pin = view.annotation as! Pin
-        isEditing ? deletePin(pin) : showDetails(pin)
+        isEditing ? showActionSheetForPin(pin) : showDetails(pin)
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
@@ -91,7 +90,7 @@ extension MapViewController {
     
     fileprivate func addLongPressGesture() {
         
-        mapView.addGestureRecognizer(UIGestureRecognizer(target: mapView, action: Selector(("dropPinOnMap:"))))
+        mapView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(dropPinOnMap(sender:))))
     }
     
     private func fetchPinsFromDB(handler: @escaping ([Pin]) -> Void) {
@@ -125,7 +124,7 @@ extension MapViewController {
     
     private func fetchMapRegion(handler: @escaping ([MapRegion]) -> Void) {
         
-        var mapRegion = [MapRegion()]
+        var mapRegion = [MapRegion]()
         
         context.perform { 
             
@@ -148,7 +147,10 @@ extension MapViewController {
         
         fetchMapRegion { (mapRegion) in
             
-            weakSelf.mapView.setRegion((mapRegion.last?.region)!, animated: true)
+            if mapRegion.count > 0 {
+                
+                weakSelf.mapView.setRegion((mapRegion.last?.region)!, animated: true)
+            }
         }
     }
 }
@@ -158,18 +160,33 @@ extension MapViewController {
 
 extension MapViewController {
     
-    fileprivate func dropPinOnMap(sender: UIGestureRecognizer) {
+    @objc fileprivate func dropPinOnMap(sender: UIGestureRecognizer) {
         
         if sender.state == .began {
             
             let coordinate = mapView.convert(sender.location(in: mapView), toCoordinateFrom: mapView)
             let pin  = Pin(latitude: coordinate.latitude, longitude: coordinate.longitude, context: context)
             
-            //TODO: Start Fetching Photos
+            getPhotosForPin(pin)
             
             mapView.addAnnotation(pin)
             sharedDataManager.save()
         }
+    }
+    
+    fileprivate func getPhotosForPin(_ pin: Pin) {
+        
+        pin.flickrConfig?.getPhotosForLocation(context: context, handler: { (errorString) in
+            
+            if let errorString = errorString {
+                
+                print(errorString)
+            }
+            else {
+                
+                sharedDataManager.save()
+            }
+        })
     }
     
     fileprivate func deletePin(_ pin: Pin) {
@@ -182,6 +199,22 @@ extension MapViewController {
     fileprivate func showDetails(_ pin: Pin) {
         
         //TODO: Push to Detail View
+    }
+    
+    fileprivate func showActionSheetForPin(_ pin: Pin) {
+        
+        let alert = UIAlertController.init(title: "Remove Location?", message: nil, preferredStyle: .actionSheet)
+        
+        let actionYes =  UIAlertAction(title: "Yes!", style: .destructive) { _ in
+            
+            self.deletePin(pin)
+        }
+        alert.addAction(actionYes)
+        
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(actionCancel)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 

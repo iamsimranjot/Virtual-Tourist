@@ -33,11 +33,8 @@
                             <constraint firstItem="u8Z-Ha-koZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="XIT-zz-Y5U"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3da-QK-E7J">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="pgC-3G-Hel"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="3da-QK-E7J"/>
                     <connections>
-                        <outlet property="editButton" destination="pgC-3G-Hel" id="RgD-Wu-bPR"/>
                         <outlet property="mapView" destination="u8Z-Ha-koZ" id="v3x-sx-UZA"/>
                     </connections>
                 </viewController>

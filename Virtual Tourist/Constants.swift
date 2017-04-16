@@ -91,4 +91,12 @@ struct Constants {
         
         static let PinReuseIdentifier = "PinIdentifier"
     }
+    
+    struct Errors {
+        
+        static let ConnectionError = "Connection Error"
+        static let UsernamePasswordIncorrect = "Username or password is incorrect"
+        static let FetchingOnGoing = "Fetching in Progress"
+        static let ResponseInorrect = "Incorrrect Response"
+    }
 }

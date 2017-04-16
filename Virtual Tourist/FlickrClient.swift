@@ -52,25 +52,22 @@ class FlickrClient: APIHelper {
             } catch {
                 
                 print("JSON converting error")
-                faliure("Connection error")
+                faliure(Constants.Errors.ConnectionError)
                 return
             }
             
             guard let photoData = json["photos"] as? [String : AnyObject] else {
-                print("Can't find [photos] in response")
-                faliure("Wrong response")
+                faliure(Constants.Errors.ResponseInorrect)
                 return
             }
             
             guard let pages = photoData["pages"] as? Int else {
-                print("Can't find [photos][pages] in response")
-                faliure("Wrong response")
+                faliure(Constants.Errors.ResponseInorrect)
                 return
             }
             
             guard let results = photoData["photo"] as? [[String : AnyObject]] else {
-                print("Can't find [photos][photo] in response")
-                faliure("Wrong response")
+                faliure(Constants.Errors.ResponseInorrect)
                 return
             }
             

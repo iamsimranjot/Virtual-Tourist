@@ -67,19 +67,19 @@ class APIHelper {
             
             guard error == nil else {
                 print("Error in response")
-                faliure("Connection error")
+                faliure(Constants.Errors.ConnectionError)
                 return
             }
             
             guard let status = (response as? HTTPURLResponse)?.statusCode, status >= 200 && status <= 299 else {
                 print("Wrong response status code")
-                faliure("Username or password is incorrect")
+                faliure(Constants.Errors.UsernamePasswordIncorrect)
                 return
             }
             
             guard let _ = data else {
                 print("Wrong response data")
-                faliure("Connection error")
+                faliure(Constants.Errors.ConnectionError)
                 return
             }
             
