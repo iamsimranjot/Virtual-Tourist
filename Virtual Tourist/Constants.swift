@@ -72,6 +72,19 @@ struct Constants {
             static let Format = "json"
             static let JsonCallBack = "1"
             static let PerPage = "30"
-        }        
+        }
+        
+        
+        //MARK: Bounding Box Constants
+        
+        struct BoundingBox {
+            
+            static let BoundingBoxHalfWidth = 1.0
+            static let BoundingBoxHalfHeight = 1.0
+            static let MinimumLatitude = -90.0
+            static let MaximimLatitude = 90.0
+            static let MinimumLongitude = -180.0
+            static let MaximimLongitude = 180.0
+        }
     }
 }
