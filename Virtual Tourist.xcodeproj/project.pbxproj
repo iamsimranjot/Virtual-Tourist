@@ -25,6 +25,7 @@
 		70E3FBAC1EA256A4005CD8E6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBAB1EA256A4005CD8E6 /* CoreDataManager.swift */; };
 		70E3FBAF1EA25A41005CD8E6 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBAE1EA25A41005CD8E6 /* APIHelper.swift */; };
 		70E3FBB11EA3503A005CD8E6 /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBB01EA3503A005CD8E6 /* FlickrClient.swift */; };
+		70E3FBB31EA3B9EB005CD8E6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBB21EA3B9EB005CD8E6 /* CollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		70E3FBAB1EA256A4005CD8E6 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		70E3FBAE1EA25A41005CD8E6 /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		70E3FBB01EA3503A005CD8E6 /* FlickrClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrClient.swift; sourceTree = "<group>"; };
+		70E3FBB21EA3B9EB005CD8E6 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				70E3FB891E9DF250005CD8E6 /* MapViewController.swift */,
+				70E3FBB21EA3B9EB005CD8E6 /* CollectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				7008C2CE1E9B9ED10035A47E /* FlickrConfigs+CoreDataProperties.swift in Sources */,
 				7008C2D21E9B9ED10035A47E /* Photos+CoreDataProperties.swift in Sources */,
 				7008C2CC1E9B9ED10035A47E /* Pin+CoreDataProperties.swift in Sources */,
+				70E3FBB31EA3B9EB005CD8E6 /* CollectionViewController.swift in Sources */,
 				7008C2CB1E9B9ED10035A47E /* Pin+CoreDataClass.swift in Sources */,
 				701142051E9A3DF500D27754 /* Virtual_Tourist.xcdatamodeld in Sources */,
 				701141FD1E9A3DF500D27754 /* AppDelegate.swift in Sources */,

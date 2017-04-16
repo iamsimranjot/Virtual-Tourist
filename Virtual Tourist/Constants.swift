@@ -87,9 +87,17 @@ struct Constants {
         }
     }
     
-    struct MapViewController {
+    struct MapVC {
         
         static let PinReuseIdentifier = "PinIdentifier"
+        static let ActionSheetTitle = "Remove Location?"
+        static let ActionYes = "Yes!"
+        static let ActionCancel = "Cancel"
+    }
+    
+    struct CollectionVC {
+        
+        static let StoryboardIdentifier = "CollectionVC"
     }
     
     struct Errors {

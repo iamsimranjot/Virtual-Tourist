@@ -36,8 +36,8 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        let pin = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.MapViewController.PinReuseIdentifier) as? MKPinAnnotationView ??
-                                            MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewController.PinReuseIdentifier)
+        let pin = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.MapVC.PinReuseIdentifier) as? MKPinAnnotationView ??
+                                            MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapVC.PinReuseIdentifier)
         
         pin.animatesDrop = true
         pin.isDraggable = true
@@ -203,15 +203,15 @@ extension MapViewController {
     
     fileprivate func showActionSheetForPin(_ pin: Pin) {
         
-        let alert = UIAlertController.init(title: "Remove Location?", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController.init(title: Constants.MapVC.ActionSheetTitle, message: nil, preferredStyle: .actionSheet)
         
-        let actionYes =  UIAlertAction(title: "Yes!", style: .destructive) { _ in
+        let actionYes =  UIAlertAction(title: Constants.MapVC.ActionYes, style: .destructive) { _ in
             
             self.deletePin(pin)
         }
         alert.addAction(actionYes)
         
-        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let actionCancel = UIAlertAction(title: Constants.MapVC.ActionCancel, style: .cancel, handler: nil)
         alert.addAction(actionCancel)
         
         present(alert, animated: true, completion: nil)
