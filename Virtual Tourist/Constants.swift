@@ -87,6 +87,9 @@ struct Constants {
         }
     }
     
+    
+    //MARK: MapViewController Constants
+    
     struct MapVC {
         
         static let PinReuseIdentifier = "PinIdentifier"
@@ -95,10 +98,16 @@ struct Constants {
         static let ActionCancel = "Cancel"
     }
     
+    
+    //MARK: CollectionViewController Constants
+    
     struct CollectionVC {
         
         static let StoryboardIdentifier = "CollectionVC"
     }
+    
+    
+    //MARK: Error Constants
     
     struct Errors {
         

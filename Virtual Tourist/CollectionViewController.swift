@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class CollectionViewController: UIViewController {
 
+    
+    //MARK: Properties
+    
+    var pin: Pin? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

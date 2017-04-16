@@ -10,8 +10,13 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
-
+    
+    //MARK: Outlets
+    
     @IBOutlet weak var mapView: MKMapView!
+    
+    
+    //MARK: LifeCycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +25,9 @@ class MapViewController: UIViewController {
         navigationItem.rightBarButtonItem = editButtonItem
         initialSetup()
     }
+    
+    
+    //MARK: Helper Methods
     
     private func initialSetup() {
         
@@ -198,7 +206,11 @@ extension MapViewController {
     
     fileprivate func showDetails(_ pin: Pin) {
         
-        //TODO: Push to Detail View
+        let destinationVC = storyboard!.instantiateViewController(withIdentifier: Constants.CollectionVC.StoryboardIdentifier) as! CollectionViewController
+        
+        destinationVC.pin = pin
+        
+        navigationController?.pushViewController(destinationVC, animated: true);
     }
     
     fileprivate func showActionSheetForPin(_ pin: Pin) {
