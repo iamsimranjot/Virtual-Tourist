@@ -86,4 +86,9 @@ struct Constants {
             static let MaximimLongitude = 180.0
         }
     }
+    
+    struct MapViewController {
+        
+        static let PinReuseIdentifier = "PinIdentifier"
+    }
 }

@@ -33,6 +33,47 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let pin = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.MapViewController.PinReuseIdentifier) as? MKPinAnnotationView ??
+                                            MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.MapViewController.PinReuseIdentifier)
+        
+        pin.isSelected = true
+        pin.animatesDrop = true
+        pin.isDraggable = true
+        
+        return pin
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        
+        if ((!isEditing) && (oldState == .ending)) {
+            
+            let pin = view.annotation as! Pin
+            
+            pin.deletePhotos(context: context, handler: { (errorString) in
+                
+                if let errorString = errorString {
+                    
+                    print(errorString)
+                }
+                else {
+                    
+                    sharedDataManager.save()
+                }
+            })
+            
+            //TODO: Start Fetching Photos for New Location
+            
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        let pin = view.annotation as! Pin
+        isEditing ? deletePin(pin) : showDetails(pin)
+    }
+    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         let _ = MapRegion(region: mapView.region, context: context)
@@ -110,12 +151,37 @@ extension MapViewController {
             weakSelf.mapView.setRegion((mapRegion.last?.region)!, animated: true)
         }
     }
-    
-    
-    //MARK: Action Helpers
+}
+
+
+//MARK: Action Helpers Extension
+
+extension MapViewController {
     
     fileprivate func dropPinOnMap(sender: UIGestureRecognizer) {
         
+        if sender.state == .began {
+            
+            let coordinate = mapView.convert(sender.location(in: mapView), toCoordinateFrom: mapView)
+            let pin  = Pin(latitude: coordinate.latitude, longitude: coordinate.longitude, context: context)
+            
+            //TODO: Start Fetching Photos
+            
+            mapView.addAnnotation(pin)
+            sharedDataManager.save()
+        }
+    }
+    
+    fileprivate func deletePin(_ pin: Pin) {
         
+        context.delete(pin)
+        mapView.removeAnnotation(pin)
+        sharedDataManager.save()
+    }
+    
+    fileprivate func showDetails(_ pin: Pin) {
+        
+        //TODO: Push to Detail View
     }
 }
+
