@@ -13,6 +13,11 @@ var context: NSManagedObjectContext = {
     return CoreDataManager.sharedInstance().context
 }()
 
+var sharedDataManager: CoreDataManager = {
+    
+    return CoreDataManager.sharedInstance()
+}()
+
 struct Constants {
     
     

@@ -6,7 +6,7 @@
 //  Copyright © 2017 SimranJot Singh. All rights reserved.
 //
 
-import Foundation
+import MapKit
 import CoreData
 
 @objc(MapRegion)
@@ -16,15 +16,28 @@ public class MapRegion: NSManagedObject {
         super.init(entity: entity, insertInto: context)
     }
     
-    init(centerLatitude: Double, centerLongitude: Double, spanLatitude: Double, spanLongitude: Double, context: NSManagedObjectContext) {
+    init(region: MKCoordinateRegion, context: NSManagedObjectContext) {
         
         let entity = NSEntityDescription.entity(forEntityName: "MapRegion", in: context)
         super.init(entity: entity!, insertInto: context)
         
-        self.centerLatitude = centerLatitude
-        self.centerLongitude = centerLongitude
-        self.spanLatitude = spanLatitude
-        self.spanLongitude = spanLongitude
+        self.region = region
     }
-
+    
+    var region: MKCoordinateRegion {
+        
+        set {
+            
+            centerLatitude = newValue.center.latitude
+            centerLongitude = newValue.center.longitude
+            spanLatitude = newValue.span.latitudeDelta
+            spanLongitude = newValue.span.longitudeDelta
+        }
+        get {
+            
+            let center = CLLocationCoordinate2DMake(centerLatitude, centerLongitude)
+            let span = MKCoordinateSpanMake(spanLatitude, spanLongitude)
+            return MKCoordinateRegionMake(center, span)
+        }
+    }
 }
