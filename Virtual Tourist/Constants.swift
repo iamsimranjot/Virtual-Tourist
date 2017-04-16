@@ -104,6 +104,7 @@ struct Constants {
     struct CollectionVC {
         
         static let StoryboardIdentifier = "CollectionVC"
+        static let CollectionViewCellIdentifier = "PhotoCollectionViewCell"
     }
     
     

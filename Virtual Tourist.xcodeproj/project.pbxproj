@@ -26,6 +26,7 @@
 		70E3FBAF1EA25A41005CD8E6 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBAE1EA25A41005CD8E6 /* APIHelper.swift */; };
 		70E3FBB11EA3503A005CD8E6 /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBB01EA3503A005CD8E6 /* FlickrClient.swift */; };
 		70E3FBB31EA3B9EB005CD8E6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBB21EA3B9EB005CD8E6 /* CollectionViewController.swift */; };
+		70E3FBB51EA3C9EF005CD8E6 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBB41EA3C9EF005CD8E6 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		70E3FBAE1EA25A41005CD8E6 /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		70E3FBB01EA3503A005CD8E6 /* FlickrClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrClient.swift; sourceTree = "<group>"; };
 		70E3FBB21EA3B9EB005CD8E6 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		70E3FBB41EA3C9EF005CD8E6 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		701142121E9A3FAA00D27754 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				70E3FBB41EA3C9EF005CD8E6 /* PhotoCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				7008C2CE1E9B9ED10035A47E /* FlickrConfigs+CoreDataProperties.swift in Sources */,
 				7008C2D21E9B9ED10035A47E /* Photos+CoreDataProperties.swift in Sources */,
 				7008C2CC1E9B9ED10035A47E /* Pin+CoreDataProperties.swift in Sources */,
+				70E3FBB51EA3C9EF005CD8E6 /* PhotoCollectionViewCell.swift in Sources */,
 				70E3FBB31EA3B9EB005CD8E6 /* CollectionViewController.swift in Sources */,
 				7008C2CB1E9B9ED10035A47E /* Pin+CoreDataClass.swift in Sources */,
 				701142051E9A3DF500D27754 /* Virtual_Tourist.xcdatamodeld in Sources */,
