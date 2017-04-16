@@ -13,6 +13,7 @@ class CoreDataManager {
     
     //MARK: Singleton Class
     
+    private init() {}
     private static var sharedManager = CoreDataManager()
     
     class func sharedInstance() -> CoreDataManager {
