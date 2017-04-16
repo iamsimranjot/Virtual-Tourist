@@ -24,6 +24,7 @@
 		70E3FB8C1E9E0E36005CD8E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FB8B1E9E0E36005CD8E6 /* Constants.swift */; };
 		70E3FBAC1EA256A4005CD8E6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBAB1EA256A4005CD8E6 /* CoreDataManager.swift */; };
 		70E3FBAF1EA25A41005CD8E6 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBAE1EA25A41005CD8E6 /* APIHelper.swift */; };
+		70E3FBB11EA3503A005CD8E6 /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3FBB01EA3503A005CD8E6 /* FlickrClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		70E3FB8B1E9E0E36005CD8E6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		70E3FBAB1EA256A4005CD8E6 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		70E3FBAE1EA25A41005CD8E6 /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
+		70E3FBB01EA3503A005CD8E6 /* FlickrClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				70E3FBAE1EA25A41005CD8E6 /* APIHelper.swift */,
+				70E3FBB01EA3503A005CD8E6 /* FlickrClient.swift */,
 			);
 			name = APIClients;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				70E3FBAC1EA256A4005CD8E6 /* CoreDataManager.swift in Sources */,
 				70E3FB8C1E9E0E36005CD8E6 /* Constants.swift in Sources */,
 				70E3FB8A1E9DF250005CD8E6 /* MapViewController.swift in Sources */,
+				70E3FBB11EA3503A005CD8E6 /* FlickrClient.swift in Sources */,
 				7008C2CF1E9B9ED10035A47E /* MapRegion+CoreDataClass.swift in Sources */,
 				7008C2CD1E9B9ED10035A47E /* FlickrConfigs+CoreDataClass.swift in Sources */,
 				7008C2D01E9B9ED10035A47E /* MapRegion+CoreDataProperties.swift in Sources */,
