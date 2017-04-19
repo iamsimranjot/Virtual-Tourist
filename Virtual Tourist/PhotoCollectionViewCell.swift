@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PINRemoteImage
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
@@ -15,14 +16,20 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+
     
     //MARK: Properties
     
     var image: Photos? = nil {
+        
         didSet {
+            isLoading = true
+            imageView.pin_updateWithProgress = true
             
-            //TODO: Set Image
+            imageView.pin_setImage(from: URL(string: (image?.url)!)) { _ in
+                
+                self.isLoading = false
+            }
         }
     }
     

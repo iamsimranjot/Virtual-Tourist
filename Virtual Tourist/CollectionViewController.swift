@@ -43,6 +43,7 @@ class CollectionViewController: UIViewController {
         
         initFetchedResultsController()
         
+        fetchedResultsController.delegate = self;
         navigationItem.rightBarButtonItem = editButtonItem
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(backTapped))
         
@@ -82,20 +83,15 @@ class CollectionViewController: UIViewController {
     
     func initFetchedResultsController() {
         
-        unowned let weakSelf = self
+        do {
+            
+            try fetchedResultsController.performFetch()
+            
+        } catch { }
         
-        context.perform { 
+        if fetchedResultsController.fetchedObjects!.count == 0 {
             
-            do {
-                
-                try weakSelf.fetchedResultsController.performFetch()
-                
-            } catch { }
-            
-            if weakSelf.fetchedResultsController.fetchedObjects!.count == 0 {
-                
-                weakSelf.loadNewCollection()
-            }
+            loadNewCollection()
         }
     }
     
@@ -146,8 +142,8 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CollectionVC.CollectionViewCellIdentifier, for: indexPath) as! PhotoCollectionViewCell
         
-//        let photo = fetchedResultsController.object(at: indexPath)
-//        cell.image = photo
+        let photo = fetchedResultsController.object(at: indexPath)
+        cell.image = photo
         
         return cell
     }

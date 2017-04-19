@@ -24,6 +24,7 @@ public class Pin: NSManagedObject, MKAnnotation {
         
         self.latitude = latitude
         self.longitude = longitude
+        self.flickrConfig = FlickrConfigs(context: context)
     }
     
     public var coordinate: CLLocationCoordinate2D {

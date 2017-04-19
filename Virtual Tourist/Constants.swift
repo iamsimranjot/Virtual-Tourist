@@ -70,7 +70,7 @@ struct Constants {
             static let Extras = "url_m"
             static let Format = "json"
             static let JsonCallBack = "1"
-            static let PerPage = "30"
+            static let PerPage = "20"
         }
         
         
