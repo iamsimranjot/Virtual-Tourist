@@ -45,7 +45,6 @@ class CollectionViewController: UIViewController {
         
         fetchedResultsController.delegate = self;
         navigationItem.rightBarButtonItem = editButtonItem
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(backTapped))
         
         mapView.addAnnotation(pin!)
         mapView.setRegion(MKCoordinateRegion(center: pin!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)), animated: true)

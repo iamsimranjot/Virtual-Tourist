@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--Virtual Tourist-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Virtual_Tourist" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,7 +33,9 @@
                             <constraint firstItem="u8Z-Ha-koZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="XIT-zz-Y5U"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3da-QK-E7J"/>
+                    <navigationItem key="navigationItem" title="Virtual Tourist" id="3da-QK-E7J">
+                        <barButtonItem key="backBarButtonItem" title="OK" id="vGJ-DT-g5V"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="u8Z-Ha-koZ" id="v3x-sx-UZA"/>
                         <segue destination="lYT-bd-OoE" kind="show" identifier="ShowDetailSegue" id="f8C-8k-nMX"/>
@@ -43,7 +45,7 @@
             </objects>
             <point key="canvasLocation" x="1209" y="-552"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Photo Collection-->
         <scene sceneID="41k-SU-7If">
             <objects>
                 <viewController storyboardIdentifier="CollectionVC" id="lYT-bd-OoE" customClass="CollectionViewController" customModule="Virtual_Tourist" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,8 +64,8 @@
                                 </constraints>
                             </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZVX-vh-SCN">
-                                <rect key="frame" x="0.0" y="214" width="375" height="423"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="217" width="375" height="420"/>
+                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="J0d-WM-0c7">
                                     <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -79,21 +81,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Lk-Ox-jMZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                    <rect key="frame" x="2" y="2" width="146" height="146"/>
                                                 </imageView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="rC4-O8-1BB">
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rC4-O8-1BB">
                                                     <rect key="frame" x="65" y="65" width="20" height="20"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="rC4-O8-1BB" firstAttribute="centerX" secondItem="mTy-G3-opq" secondAttribute="centerX" id="Bqw-0e-pGv"/>
-                                            <constraint firstItem="9Lk-Ox-jMZ" firstAttribute="leading" secondItem="mTy-G3-opq" secondAttribute="leading" id="OKH-2I-mv1"/>
-                                            <constraint firstAttribute="trailing" secondItem="9Lk-Ox-jMZ" secondAttribute="trailing" id="UPL-Se-JZi"/>
-                                            <constraint firstAttribute="bottom" secondItem="9Lk-Ox-jMZ" secondAttribute="bottom" id="UcO-LY-upg"/>
+                                            <constraint firstItem="9Lk-Ox-jMZ" firstAttribute="leading" secondItem="mTy-G3-opq" secondAttribute="leading" constant="2" id="OKH-2I-mv1"/>
+                                            <constraint firstAttribute="trailing" secondItem="9Lk-Ox-jMZ" secondAttribute="trailing" constant="2" id="UPL-Se-JZi"/>
+                                            <constraint firstAttribute="bottom" secondItem="9Lk-Ox-jMZ" secondAttribute="bottom" constant="2" id="UcO-LY-upg"/>
                                             <constraint firstItem="rC4-O8-1BB" firstAttribute="centerY" secondItem="mTy-G3-opq" secondAttribute="centerY" id="Y1F-ij-bL3"/>
-                                            <constraint firstItem="9Lk-Ox-jMZ" firstAttribute="top" secondItem="mTy-G3-opq" secondAttribute="top" id="gJv-CH-exD"/>
+                                            <constraint firstItem="9Lk-Ox-jMZ" firstAttribute="top" secondItem="mTy-G3-opq" secondAttribute="top" constant="2" id="gJv-CH-exD"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="activityIndicator" destination="rC4-O8-1BB" id="1bL-yX-PoO"/>
@@ -102,30 +104,42 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qbf-5m-EQx">
-                                <rect key="frame" x="100" y="637" width="175" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="New Collection"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qbf-5m-EQx">
+                                <rect key="frame" x="16" y="640" width="343" height="27"/>
+                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="New Collection">
+                                    <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="newCollectionsTapped:" destination="lYT-bd-OoE" eventType="touchUpInside" id="tMm-mT-Pfc"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="W2h-Z5-IGa" firstAttribute="top" secondItem="mT0-Cg-Vh3" secondAttribute="bottom" id="78q-jW-X23"/>
                             <constraint firstItem="ZVX-vh-SCN" firstAttribute="leading" secondItem="KCU-fs-kxD" secondAttribute="leading" id="HUE-TT-Y3X"/>
-                            <constraint firstItem="ZVX-vh-SCN" firstAttribute="top" secondItem="W2h-Z5-IGa" secondAttribute="bottom" id="JcG-ql-qXv"/>
-                            <constraint firstItem="Qbf-5m-EQx" firstAttribute="top" secondItem="ZVX-vh-SCN" secondAttribute="bottom" id="Lvi-wz-VdI"/>
+                            <constraint firstItem="ZVX-vh-SCN" firstAttribute="top" secondItem="W2h-Z5-IGa" secondAttribute="bottom" constant="3" id="JcG-ql-qXv"/>
+                            <constraint firstItem="Qbf-5m-EQx" firstAttribute="top" secondItem="ZVX-vh-SCN" secondAttribute="bottom" constant="3" id="Lvi-wz-VdI"/>
                             <constraint firstItem="RYh-xQ-V0h" firstAttribute="top" secondItem="Qbf-5m-EQx" secondAttribute="bottom" id="ceS-QZ-LVv"/>
                             <constraint firstItem="W2h-Z5-IGa" firstAttribute="leading" secondItem="KCU-fs-kxD" secondAttribute="leading" id="coc-Pa-uE4"/>
                             <constraint firstAttribute="trailing" secondItem="W2h-Z5-IGa" secondAttribute="trailing" id="dWr-wN-CaS"/>
-                            <constraint firstItem="Qbf-5m-EQx" firstAttribute="leading" secondItem="KCU-fs-kxD" secondAttribute="leading" constant="100" id="gB3-T9-waL"/>
+                            <constraint firstItem="Qbf-5m-EQx" firstAttribute="leading" secondItem="KCU-fs-kxD" secondAttribute="leading" constant="16" id="gB3-T9-waL"/>
                             <constraint firstAttribute="trailing" secondItem="ZVX-vh-SCN" secondAttribute="trailing" id="lsp-HY-BIk"/>
                             <constraint firstItem="RYh-xQ-V0h" firstAttribute="top" secondItem="ZVX-vh-SCN" secondAttribute="bottom" constant="30" id="uHK-Zs-wHh"/>
-                            <constraint firstAttribute="trailing" secondItem="Qbf-5m-EQx" secondAttribute="trailing" constant="100" id="wqt-BA-TdE"/>
+                            <constraint firstAttribute="trailing" secondItem="Qbf-5m-EQx" secondAttribute="trailing" constant="16" id="wqt-BA-TdE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Photo Collection" id="V9q-0a-ddg"/>
                     <connections>
                         <outlet property="collectionView" destination="ZVX-vh-SCN" id="QDr-kW-wYX"/>
                         <outlet property="mapView" destination="W2h-Z5-IGa" id="chl-qn-AWw"/>
