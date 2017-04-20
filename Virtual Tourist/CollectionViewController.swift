@@ -180,13 +180,9 @@ extension CollectionViewController: NSFetchedResultsControllerDelegate {
         
         collectionView.performBatchUpdates({ 
             
-            for indexPath in self.insertedIndexPaths {
-                self.collectionView.insertItems(at: [indexPath])
-            }
+            self.collectionView.insertItems(at: self.insertedIndexPaths)
             
-            for indexPath in self.deletedIndexPaths {
-                self.collectionView.deleteItems(at: [indexPath])
-            }
+            self.collectionView.deleteItems(at: self.deletedIndexPaths)
             
         }, completion: nil)
     }
