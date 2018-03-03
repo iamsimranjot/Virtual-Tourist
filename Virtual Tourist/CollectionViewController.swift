@@ -116,7 +116,10 @@ class CollectionViewController: UIViewController {
         pin?.deletePhotos(context: context) { _ in }
         
         pin?.flickrConfig?.getPhotosForLocation(context: context) { _ in
-            self.newCollectionButton.isEnabled = true
+            
+            DispatchQueue.main.async {
+                self.newCollectionButton.isEnabled = true
+            }
             sharedDataManager.save()
         }
     }

@@ -47,7 +47,7 @@ class FlickrClient: APIHelper {
             
             do {
                 
-                json = try JSONSerialization.jsonObject(with: data as! Data, options: .allowFragments) as AnyObject
+                json = try JSONSerialization.jsonObject(with: data! as Data, options: .allowFragments) as AnyObject
                 
             } catch {
                 
